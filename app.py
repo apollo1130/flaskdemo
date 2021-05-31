@@ -9,7 +9,10 @@ import time
 
 app = Flask(__name__, static_url_path='');
 
-
+CORS(app)
+@app.route("/", methods=["GET"])
+def home():
+    return '<h1>Demo</h1>'
 CORS(app)
 @app.route("/bot", methods=["POST"])
 
