@@ -52,11 +52,12 @@ def response():
     
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
-    return '<h2>sdfjk</h2>'
+    
     if prob.item() > 0.75:
+        app.logger.info('%d logged in successfully', prob.item())
+        app.logger.info(intents['intents'])
         for intent in intents['intents']:
             if tag == intent["tag"]:
-                
                 return jsonify({"response" : random.choice(intent['responses'])})
     else:
         return jsonify({"response" : " I do not understand..."})
