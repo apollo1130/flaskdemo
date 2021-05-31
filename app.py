@@ -45,13 +45,14 @@ def response():
     X = bag_of_words(res, all_words)
     X = X.reshape(1, X.shape[0])
     X = torch.from_numpy(X).to(device)
-    return '<h2>sdfjk</h2>'
+    
     output = model(X)
     _, predicted = torch.max(output, dim=1)
     tag = tags[predicted.item()]
     
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
+    return '<h2>sdfjk</h2>'
     if prob.item() > 0.75:
         for intent in intents['intents']:
             if tag == intent["tag"]:
