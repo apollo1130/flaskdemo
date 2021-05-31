@@ -14,16 +14,17 @@ CORS(app)
 def home():
     return '<h1>Demo</h1>'
 CORS(app)
-@app.route("/bot", methods=["POST"])
+@app.route("/bot", methods=["GET"])
 def response():
+    app.logger.info('start')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
+    app.logger.info(device)
     with open('intents.json', 'r') as json_data:
         intents = json.load(json_data)
-
+    app.logger.info(intents)
     FILE = "data.pth"
     data = torch.load(FILE)
-
+    app.logger.info(data)
     input_size = data["input_size"]
     hidden_size = data["hidden_size"]
     output_size = data["output_size"]
@@ -33,7 +34,8 @@ def response():
 
     model = NeuralNet(input_size, hidden_size, output_size).to(device)
     model.load_state_dict(model_state)
-    model.eval()    
+    model.eval()
+    return '<h2>sdfjk</h2>'
     query = dict(request.form)['query']
     res = query 
     res =  tokenize(res)
