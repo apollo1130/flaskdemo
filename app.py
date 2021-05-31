@@ -14,7 +14,7 @@ CORS(app)
 def home():
     return '<h1>Demo</h1>'
 CORS(app)
-@app.route("/bot", methods=["GET"])
+@app.route("/bot", methods=["POST"])
 def response():
     app.logger.info('start')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
