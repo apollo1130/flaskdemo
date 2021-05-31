@@ -35,15 +35,17 @@ def response():
     model = NeuralNet(input_size, hidden_size, output_size).to(device)
     model.load_state_dict(model_state)
     model.eval()
-    return '<h2>sdfjk</h2>'
+    # return '<h2>sdfjk</h2>'
     query = dict(request.form)['query']
+    
+
     res = query 
     res =  tokenize(res)
     
     X = bag_of_words(res, all_words)
     X = X.reshape(1, X.shape[0])
     X = torch.from_numpy(X).to(device)
-    
+    return '<h2>sdfjk</h2>'
     output = model(X)
     _, predicted = torch.max(output, dim=1)
     tag = tags[predicted.item()]
